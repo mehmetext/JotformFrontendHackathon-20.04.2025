@@ -8,11 +8,13 @@ Please fill in your information after forking this repository:
 
 ## Project Description
 
-[Add a brief description of your project here]
+A Next.js project with Tailwind CSS and Shadcn UI for Jotform Frontend Hackathon.
 
 ## Getting Started
 
-[Add instructions for setting up and running the project]
+1. Clone the repository `git clone https://github.com/mehmetext/JotformFrontendHackathon-20.04.2025.git`
+2. Install dependencies `npm install`
+3. Run the development server `npm run dev`
 
 ## License
 
