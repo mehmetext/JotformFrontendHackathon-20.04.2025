@@ -13,8 +13,9 @@ A Next.js project with Tailwind CSS and Shadcn UI for Jotform Frontend Hackathon
 ## Getting Started
 
 1. Clone the repository `git clone https://github.com/mehmetext/JotformFrontendHackathon-20.04.2025.git`
-2. Install dependencies `npm install`
-3. Run the development server `npm run dev`
+2. Create a `.env` file and add your Jotform API key and form ID `JOTFORM_API_KEY=your_api_key` and `JOTFORM_FORM_ID=your_form_id`
+3. Install dependencies `npm install`
+4. Run the development server `npm run dev`
 
 ## License
 

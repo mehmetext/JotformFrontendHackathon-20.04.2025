@@ -45,7 +45,7 @@ export default function CheckoutPage() {
   );
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    await submitForm(data.name, data.address, items);
+    await submitForm(data.name, data.address, items, totalPrice);
   };
 
   return (
