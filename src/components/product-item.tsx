@@ -1,17 +1,19 @@
 "use client";
 
 import { useCartStore } from "@/lib/stores/cart";
-import { formatPriceFromString } from "@/lib/utils";
-import { MinusIcon, PlusIcon, ShoppingCartIcon } from "lucide-react";
+import { useFavoritesStore } from "@/lib/stores/favorites";
+import { cn, formatPriceFromString } from "@/lib/utils";
+import { HeartIcon, MinusIcon, PlusIcon, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
-
 export default function ProductItem({ product }: { product: Product }) {
   const { addItem } = useCartStore();
+  const { toggleItem: toggleFavorite, items: favorites } = useFavoritesStore();
   const [quantity, setQuantity] = useState(1);
+  const isFavorite = favorites.includes(product.pid);
 
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
@@ -22,7 +24,7 @@ export default function ProductItem({ product }: { product: Product }) {
   };
 
   return (
-    <Card className="hover:shadow-lg transition-shadow duration-300 pt-0 gap-2">
+    <Card className="relative hover:shadow-lg transition-shadow duration-300 pt-0 gap-2">
       {/* Product Image */}
       <Link href={`/product/${product.pid}`}>
         <div className="relative h-48 w-full">
@@ -36,6 +38,22 @@ export default function ProductItem({ product }: { product: Product }) {
           )}
         </div>
       </Link>
+
+      {/* Favorite Button */}
+      <Button
+        variant="secondary"
+        size="icon"
+        className={cn("absolute top-2 right-2", {
+          "text-green-500": isFavorite,
+        })}
+        onClick={() => {
+          toggleFavorite(product.pid);
+        }}
+      >
+        <HeartIcon
+          className={cn("h-4 w-4", { "text-green-500": isFavorite })}
+        />
+      </Button>
 
       {/* Product Info */}
       <CardHeader className="mt-2">
