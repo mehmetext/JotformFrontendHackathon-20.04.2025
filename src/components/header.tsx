@@ -2,8 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ShoppingCart, User } from "lucide-react";
+import { Search, User } from "lucide-react";
 import Link from "next/link";
+import ShoppingCart from "./shopping-cart";
 
 export function Header() {
   return (
@@ -70,9 +71,7 @@ export function Header() {
           <Button variant="ghost" size="icon">
             <User className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-5 w-5" />
-          </Button>
+          <ShoppingCart />
         </div>
       </div>
     </header>
