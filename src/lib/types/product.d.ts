@@ -14,7 +14,7 @@ interface Product {
   isStockControlEnabled: string;
   lowStockValue: string;
   name: string;
-  options: string; // JSON string array
+  options?: string; // JSON string array
   order: string;
   paymentUUID: string;
   pid: string;

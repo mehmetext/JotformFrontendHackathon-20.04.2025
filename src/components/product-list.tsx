@@ -1,4 +1,6 @@
+import { formatPrice } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProductListProps {
   products: Product[];
@@ -8,7 +10,8 @@ export default function ProductList({ products }: ProductListProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {products.map((product) => (
-        <div
+        <Link
+          href={`/product/${product.pid}`}
           key={product.pid}
           className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
         >
@@ -35,7 +38,7 @@ export default function ProductList({ products }: ProductListProps) {
             </p>
             <div className="flex justify-between items-center">
               <span className="text-lg font-bold text-gray-900">
-                ${parseFloat(product.price).toFixed(2)}
+                {formatPrice(product.price)}
               </span>
               {product.hasQuantity === "true" && (
                 <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
@@ -44,7 +47,7 @@ export default function ProductList({ products }: ProductListProps) {
               )}
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
