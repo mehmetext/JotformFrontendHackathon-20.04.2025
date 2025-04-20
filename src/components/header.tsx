@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, User } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useState } from "react";
 import { ModeToggle } from "./dark-mode-button";
 import ShoppingCart from "./shopping-cart";
 
 export function Header() {
+  const [search, setSearch] = useState("");
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -61,10 +64,21 @@ export function Header() {
 
         {/* Search Bar */}
         <div className="flex-1 max-w-md mx-4">
-          <div className="relative">
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              redirect(`/?q=${search}`);
+            }}
+            className="relative"
+          >
             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input placeholder="Ürün ara..." className="pl-8" />
-          </div>
+            <Input
+              placeholder="Ürün ara..."
+              className="pl-8"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </form>
         </div>
 
         {/* User Actions */}
