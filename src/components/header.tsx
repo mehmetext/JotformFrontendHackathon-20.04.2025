@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, User } from "lucide-react";
 import Link from "next/link";
+import { ModeToggle } from "./dark-mode-button";
 import ShoppingCart from "./shopping-cart";
 
 export function Header() {
@@ -72,6 +73,7 @@ export function Header() {
             <User className="h-5 w-5" />
           </Button>
           <ShoppingCart />
+          <ModeToggle />
         </div>
       </div>
     </header>

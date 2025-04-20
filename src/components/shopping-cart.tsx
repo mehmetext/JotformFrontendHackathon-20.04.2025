@@ -56,7 +56,7 @@ export default function ShoppingCart() {
                 >
                   <div>
                     <p className="font-medium">{item.name}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       {item.quantity} x {item.price} TL
                     </p>
                   </div>

@@ -41,8 +41,8 @@ export default function ProductItem({ product }: { product: Product }) {
           <Link href={`/product/${product.pid}`}>{product.name}</Link>
         </h3>
       </CardHeader>
-      <CardContent>
-        <p className="text-gray-600 text-sm line-clamp-2">
+      <CardContent className="mb-2">
+        <p className="text-muted-foreground text-sm line-clamp-2">
           {product.description}
         </p>
       </CardContent>

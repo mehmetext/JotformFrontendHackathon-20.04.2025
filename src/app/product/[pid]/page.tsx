@@ -126,7 +126,7 @@ export default async function ProductDetailPage({
                   <TabsTrigger value="details">Detaylar</TabsTrigger>
                 </TabsList>
                 <TabsContent value="description" className="mt-4">
-                  <p className="text-gray-600">{product.description}</p>
+                  <p className="text-muted-foreground">{product.description}</p>
                 </TabsContent>
                 <TabsContent value="details" className="mt-4">
                   <div className="space-y-4">
@@ -171,7 +171,7 @@ export default async function ProductDetailPage({
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
                   {connectedProducts.map((productId: string, index: number) => (
-                    <div key={index} className="text-sm text-gray-600">
+                    <div key={index} className="text-sm text-muted-foreground">
                       Ürün ID: {productId}
                     </div>
                   ))}
