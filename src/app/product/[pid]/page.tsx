@@ -1,4 +1,5 @@
-import getProductDetails from "@/actions/get-product-details";
+import getProducts from "@/actions/get-products";
+import ProductItem from "@/components/product-item";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +15,9 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ pid: string }>;
 }) {
-  const product = await getProductDetails((await params).pid);
+  const { pid } = await params;
+  const products = await getProducts();
+  const product = products.find((p) => p.pid === pid);
 
   if (!product) {
     return (
@@ -30,7 +33,7 @@ export default async function ProductDetailPage({
   const connectedProducts = JSON.parse(product.connectedProducts || "[]");
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Ürün Görselleri */}
         <Card>
@@ -162,25 +165,20 @@ export default async function ProductDetailPage({
               </Tabs>
             </CardContent>
           </Card>
-
-          {connectedProducts.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>İlgili Ürünler</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  {connectedProducts.map((productId: string, index: number) => (
-                    <div key={index} className="text-sm text-muted-foreground">
-                      Ürün ID: {productId}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
         </div>
       </div>
+      {connectedProducts.length > 0 && (
+        <div className="flex flex-col gap-4">
+          <h2 className="text-2xl font-bold">Benzer Ürünler</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {connectedProducts.map((productId: string, index: number) => {
+              const product = products.find((p) => p.pid === productId);
+              if (!product) return null;
+              return <ProductItem key={index} product={product} />;
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
