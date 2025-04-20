@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { formatPrice } from "@/lib/utils";
+import { formatPriceFromString } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function ProductDetailPage({
@@ -78,7 +78,7 @@ export default async function ProductDetailPage({
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <span className="text-2xl font-bold">
-                    {formatPrice(product.price)}
+                    {formatPriceFromString(product.price)}
                   </span>
                   {product.hasSpecialPricing === "true" && (
                     <Badge variant="secondary" className="ml-2">

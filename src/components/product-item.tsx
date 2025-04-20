@@ -1,6 +1,7 @@
 "use client";
 
-import { formatPrice } from "@/lib/utils";
+import { useCartStore } from "@/lib/stores/cart";
+import { formatPriceFromString } from "@/lib/utils";
 import { MinusIcon, PlusIcon, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +10,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 
 export default function ProductItem({ product }: { product: Product }) {
+  const { addItem } = useCartStore();
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
@@ -47,7 +49,9 @@ export default function ProductItem({ product }: { product: Product }) {
         </p>
       </CardContent>
       <CardFooter className="flex justify-between items-end gap-2">
-        <span className="text-lg font-bold">{formatPrice(product.price)}</span>
+        <span className="text-lg font-bold">
+          {formatPriceFromString(product.price)}
+        </span>
         <div className="flex flex-col  gap-2">
           {/* Quantity */}
           <div className="flex items-center border rounded-md">
@@ -69,7 +73,22 @@ export default function ProductItem({ product }: { product: Product }) {
               <PlusIcon className="h-4 w-4" />
             </Button>
           </div>
-          <Button variant="default" className="cursor-pointer">
+          <Button
+            variant="default"
+            className="cursor-pointer"
+            onClick={() => {
+              addItem(
+                {
+                  pid: product.pid,
+                  image: JSON.parse(product.images)[0],
+                  name: product.name,
+                  price: parseFloat(product.price),
+                  quantity: quantity,
+                },
+                quantity
+              );
+            }}
+          >
             Add to Cart
             <ShoppingCartIcon className="ml-2 h-4 w-4" />
           </Button>
