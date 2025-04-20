@@ -26,8 +26,8 @@ export default async function ProductDetailPage({
 
   const images = JSON.parse(product.images);
   const options = JSON.parse(product.options || "[]");
-  const connectedCategories = JSON.parse(product.connectedCategories);
-  const connectedProducts = JSON.parse(product.connectedProducts);
+  const connectedCategories = JSON.parse(product.connectedCategories || "[]");
+  const connectedProducts = JSON.parse(product.connectedProducts || "[]");
 
   return (
     <div className="container mx-auto px-4 py-8">

@@ -1,7 +1,7 @@
 interface Product {
   cid: string;
-  connectedCategories: string; // JSON string array
-  connectedProducts: string; // JSON string array
+  connectedCategories?: string; // JSON string array
+  connectedProducts?: string; // JSON string array
   corder: string;
   description: string;
   fitImageToCanvas: string;

@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @utility container {
-  @apply mx-auto w-full max-2xl:px-4;
+  @apply mx-auto w-full max-2xl:px-4 max-w-5xl;
 }
 
 @theme inline {
