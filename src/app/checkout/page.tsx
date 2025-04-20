@@ -1,5 +1,6 @@
 "use client";
 
+import { submitForm } from "@/actions/submit-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -43,8 +44,8 @@ export default function CheckoutPage() {
     0
   );
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    await submitForm(data.name, data.address, items);
   };
 
   return (
