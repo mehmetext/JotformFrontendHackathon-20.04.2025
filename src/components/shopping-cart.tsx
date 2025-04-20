@@ -1,7 +1,11 @@
+"use client";
+
 import { useCartStore } from "@/lib/stores/cart";
 import { formatPrice } from "@/lib/utils";
 import { MinusIcon, PlusIcon, ShoppingCartIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import {
@@ -12,6 +16,8 @@ import {
 import { ScrollArea } from "./ui/scroll-area";
 
 export default function ShoppingCart() {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
   const { items, removeItem, increaseQuantity, decreaseQuantity, clearCart } =
     useCartStore();
 
@@ -21,7 +27,7 @@ export default function ShoppingCart() {
   );
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
           <ShoppingCartIcon className="h-5 w-5" />
@@ -98,7 +104,15 @@ export default function ShoppingCart() {
               <span>Toplam:</span>
               <span>{formatPrice(totalPrice)}</span>
             </div>
-            <Button className="w-full mt-4">Siparişi Tamamla</Button>
+            <Button
+              className="w-full mt-4"
+              onClick={() => {
+                setOpen(false);
+                router.push("/checkout");
+              }}
+            >
+              Siparişi Tamamla
+            </Button>
             <Button
               onClick={clearCart}
               variant="outline"
