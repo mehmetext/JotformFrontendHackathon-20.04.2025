@@ -50,6 +50,7 @@ export default function ShoppingCart() {
                     alt={item.name}
                     width={100}
                     height={100}
+                    className="rounded-md w-20 h-20 object-cover"
                   />
                   <div className="flex-1 flex flex-col gap-1">
                     <p className="font-medium">{item.name}</p>
