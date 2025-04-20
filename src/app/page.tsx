@@ -1,9 +1,11 @@
-export default function Home() {
+import getProducts from "@/actions/get-products";
+import ProductList from "@/components/product-list";
+
+export default async function Home() {
+  const products = await getProducts();
   return (
     <div className="container">
-      <div className="h-screen w-full flex items-center justify-center">
-        <h1 className="text-4xl">Jotform Frontend Hackathon</h1>
-      </div>
+      <ProductList products={products} />
     </div>
   );
 }
